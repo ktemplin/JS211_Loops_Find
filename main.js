@@ -1,9 +1,9 @@
-// let x = 0
+let x = 0
 
-// do {
-//     console.log(x)
-//     x++
-// } while (x < 1001)
+do {
+    console.log(x)
+    x++
+} while (x < 1001)
 
 const person = {
     firstName: "Jane",
@@ -11,16 +11,6 @@ const person = {
     birthDate: "Jan 5, 1925",
     gender: "female"
 }
-
-const logKeys = () => {
-    console.log(Object.keys(person))
-}
-logKeys()
-
-const logKeyValue = () => {
-    console.log(Object.entries(person))
-}
-logKeyValue()
 
 let arrayOfPersons = [
     {
@@ -63,10 +53,16 @@ let arrayOfPersons = [
 
 const listBirthDates = () => {
     for (let i = 0; i < arrayOfPersons.length; i++) {
-        let d = new Date(arrayOfPersons[i].birthDate)
-        iso = d.toISOString()
-        console.log(d)
-        console.log(iso)
+        d = new Date(arrayOfPersons[i].birthDate)
+        // var iso = d.toISOString()
+        var year = d.getFullYear()
+        // console.log(d)
+        // console.log(year)
+        // console.log(iso)
+        // console.log(year % 2 != 0)
+        if (year % 2 != 0) {
+            console.log(year)
+        } 
     }
 
     // for (let i = 0; i < arrayOfPersons.length; i++) {
@@ -80,3 +76,28 @@ const listBirthDates = () => {
 }
 listBirthDates()
 
+
+const peoples = arrayOfPersons.map((person) => {
+    console.log(person)
+})
+
+console.log(arrayOfPersons.filter((person) => person.gender === 'male') )
+
+const pre90s = () => {
+    for (let i=0; i < arrayOfPersons.length; i++) {
+        d = new Date(arrayOfPersons[i].birthDate)
+        d = d.getFullYear()
+        d = d <= 1990
+        console.log(d)
+        
+    }
+}
+pre90s()
+
+const pre90sV2 = arrayOfPersons.filter(person => {
+    const birthData = new Date(person.birthDate)
+    const targetDate = new Date('1-1-1990')
+    // return birthData.getFullYear() <= 1990
+    return birthData <= targetDate;
+})
+console.log(pre90sV2)
